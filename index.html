@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oliver Uldall Schultz — IT Engineer & Integration Specialist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #F5F2EC;
+      --bg2: #EDEAE2;
+      --ink: #1A1814;
+      --ink2: #4A4640;
+      --ink3: #8A8680;
+      --accent: #1D3A2F;
+      --accent-light: #2E5C47;
+      --gold: #B8922A;
+      --gold-light: #F0D898;
+      --border: rgba(26,24,20,0.12);
+      --serif: 'DM Serif Display', serif;
+      --sans: 'Manrope', sans-serif;
+      --mono: 'DM Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 4rem;
+      background: rgba(245,242,236,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      color: var(--accent);
+      letter-spacing: 0.01em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink2);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 4rem 4rem;
+      gap: 4rem;
+    }
+
+    .hero-text h1 {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      line-height: 1.05;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-text h1 em {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--ink2);
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      padding: 0.85rem 2rem;
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--accent-light); transform: translateY(-2px); }
+
+    .btn-outline {
+      padding: 0.85rem 2rem;
+      background: transparent;
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1.5px solid var(--accent);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-outline:hover { background: var(--accent); color: #fff; }
+
+    .hero-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: flex-end;
+    }
+
+    .hero-photo {
+      width: 100%;
+      max-width: 380px;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+      filter: grayscale(100%);
+    }
+
+    .hero-photo::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gold);
+    }
+
+    .hero-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      width: 100%;
+      max-width: 380px;
+    }
+
+    .hero-card .tag {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-card .card-title {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-card .card-body {
+      font-size: 0.85rem;
+      color: var(--ink3);
+    }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      max-width: 380px;
+      width: 100%;
+    }
+
+    .stat-cell {
+      background: var(--bg);
+      padding: 1.25rem 1rem;
+      text-align: center;
+    }
+
+    .stat-cell .num {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      color: var(--accent);
+      display: block;
+    }
+
+    .stat-cell .label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink3);
+    }
+
+    /* SECTION COMMON */
+    section {
+      padding: 6rem 4rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-num {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--ink);
+    }
+
+    /* ABOUT */
+    #about { background: var(--bg2); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--ink2);
+      font-weight: 300;
+      margin-bottom: 1.25rem;
+      font-size: 1.05rem;
+    }
+
+    .skill-group { margin-top: 2rem; }
+
+    .skill-group-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      margin-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .skill-tag {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      padding: 0.35rem 0.75rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--ink2);
+      letter-spacing: 0.04em;
+    }
+
+    .skill-tag.highlight {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    /* EXPERIENCE */
+    #experience { background: var(--bg); }
+
+    .timeline {
+      position: relative;
+      padding-left: 2.5rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3.5rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.5rem;
+      top: 8px;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+      outline: 1px solid var(--accent);
+    }
+
+    .timeline-meta {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 0.25rem;
+      flex-wrap: wrap;
+    }
+
+    .timeline-period {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+    }
+
+    .timeline-company {
+      font-size: 0.8rem;
+      color: var(--ink3);
+      font-weight: 500;
+    }
+
+    .timeline-role {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+    }
+
+    .timeline-desc {
+      color: var(--ink2);
+      font-size: 0.95rem;
+      font-weight: 300;
+      margin-bottom: 1rem;
+      line-height: 1.75;
+    }
+
+    .tech-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tech-pill {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      padding: 0.2rem 0.6rem;
+      background: var(--gold-light);
+      color: #5A3E00;
+      letter-spacing: 0.04em;
+    }
+
+    /* PROJECTS */
+    #projects { background: var(--accent); }
+
+    #projects .section-title { color: #fff; }
+    #projects .section-num { color: var(--gold-light); }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 2rem;
+      transition: background 0.2s, transform 0.2s;
+      cursor: default;
+    }
+
+    .project-card:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-4px);
+    }
+
+    .project-type {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 0.75rem;
+    }
+
+    .project-name {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+
+    .project-desc {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.7);
+      font-weight: 300;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-highlights {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-highlights li {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      padding: 0.3rem 0;
+      padding-left: 1rem;
+      position: relative;
+      font-weight: 300;
+    }
+
+    .project-highlights li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--gold-light);
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .project-tech span {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      padding: 0.2rem 0.6rem;
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.75);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    /* EDUCATION */
+    #education { background: var(--bg2); }
+
+    .edu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .edu-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 2rem;
+    }
+
+    .edu-period {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .edu-degree {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      color: var(--ink);
+      margin-bottom: 0.3rem;
+    }
+
+    .edu-inst {
+      font-size: 0.85rem;
+      color: var(--ink3);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .edu-body {
+      font-size: 0.9rem;
+      color: var(--ink2);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    .courses-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      grid-column: 1 / -1;
+    }
+
+    .courses-title {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      margin-bottom: 1.25rem;
+    }
+
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .course-item {
+      border-left: 2px solid var(--gold);
+      padding-left: 1rem;
+    }
+
+    .course-name {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.25rem;
+    }
+
+    .course-desc {
+      font-size: 0.78rem;
+      color: var(--ink3);
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    /* CONTACT */
+    #contact { background: var(--bg); }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .contact-intro {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      color: var(--ink);
+      line-height: 1.4;
+      margin-bottom: 2rem;
+    }
+
+    .contact-note {
+      font-size: 0.95rem;
+      color: var(--ink2);
+      font-weight: 300;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contact-item:last-child { border-bottom: none; }
+
+    .contact-label {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink3);
+    }
+
+    .contact-value {
+      font-size: 1.05rem;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .contact-value a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .contact-value a:hover { text-decoration: underline; }
+
+    /* FOOTER */
+    footer {
+      background: var(--ink);
+      padding: 2.5rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-name {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .footer-note {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.05em;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+      #hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; }
+      .hero-visual { align-items: stretch; }
+      .hero-card, .stat-row { max-width: 100%; }
+      section { padding: 4rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .edu-grid { grid-template-columns: 1fr; }
+      .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 2rem 1.5rem; }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">Oliver Uldall Schultz</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-text">
+    <h1>IT Engineer &amp; <em>Integration Specialist</em></h1>
+    <p class="hero-subtitle">
+      I bridge business needs and technical systems — designing automated workflows, scalable integrations, and data-driven platforms that reduce complexity and unlock performance.
+    </p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-photo">
+      <img src="headshot.jpg" alt="Oliver Uldall Schultz" />
+    </div>
+    <div class="hero-card">
+      <div class="tag">Currently open to</div>
+      <div class="card-title">Integration & Platform Engineering</div>
+      <div class="card-body">ServiceNow · MuleSoft · REST APIs · Cloud Architecture · Automation</div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-cell">
+        <span class="num">3+</span>
+        <span class="label">Years exp.</span>
+      </div>
+      <div class="stat-cell">
+        <span class="num">5+</span>
+        <span class="label">Tech stacks</span>
+      </div>
+      <div class="stat-cell">
+        <span class="num">4</span>
+        <span class="label">Projects</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header">
+    <span class="section-num">01 /</span>
+    <h2 class="section-title">About Me</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I'm an analytical IT engineer with a BEng in IT & Economics from DTU and CBS. I work at the intersection of technology and business — turning complex workflows into smart, automated solutions.
+      </p>
+      <p>
+        My professional experience spans integration development at Novo Nordisk, ServiceNow platform engineering at PFA, and freelance technology consulting for startups. I've designed and delivered scalable integration architectures, ITSM automation, and data-driven dashboards across enterprise environments.
+      </p>
+      <p>
+        I thrive as a bridge between technical teams and stakeholders — taking solutions from initial concept through to stable, production-grade delivery. I learn new platforms quickly and bring a structured, agile mindset to every project.
+      </p>
+    </div>
+    <div>
+      <div class="skill-group">
+        <div class="skill-group-label">Enterprise platforms</div>
+        <div class="skill-tags">
+          <span class="skill-tag highlight">ServiceNow</span>
+          <span class="skill-tag highlight">MuleSoft</span>
+          <span class="skill-tag">Azure DevOps</span>
+          <span class="skill-tag">SharePoint</span>
+          <span class="skill-tag">Jira</span>
+        </div>
+      </div>
+      <div class="skill-group" style="margin-top:1.5rem">
+        <div class="skill-group-label">Languages</div>
+        <div class="skill-tags">
+          <span class="skill-tag highlight">TypeScript</span>
+          <span class="skill-tag highlight">Python</span>
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">C#/.NET</span>
+          <span class="skill-tag">JavaScript</span>
+        </div>
+      </div>
+      <div class="skill-group" style="margin-top:1.5rem">
+        <div class="skill-group-label">Methods & Frameworks</div>
+        <div class="skill-tags">
+          <span class="skill-tag">REST APIs</span>
+          <span class="skill-tag">Agile / Scrum</span>
+          <span class="skill-tag">SAFe</span>
+          <span class="skill-tag">ITIL</span>
+          <span class="skill-tag">CI/CD</span>
+          <span class="skill-tag">Microservices</span>
+          <span class="skill-tag">Docker</span>
+        </div>
+      </div>
+      <div class="skill-group" style="margin-top:1.5rem">
+        <div class="skill-group-label">Languages spoken</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Danish — Native</span>
+          <span class="skill-tag">English — Fluent</span>
+          <span class="skill-tag">Swedish / Norwegian — Conversational</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header">
+    <span class="section-num">02 /</span>
+    <h2 class="section-title">Experience</h2>
+  </div>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-meta">
+        <span class="timeline-period">2024 — Present</span>
+        <span class="timeline-company">Independent</span>
+      </div>
+      <div class="timeline-role">Freelance IT & Business Consultant</div>
+      <p class="timeline-desc">
+        Advising startups and organisations on technology strategy, platform architecture, and digital product development. Leading end-to-end engagements — from requirements discovery through to delivery-ready technical specifications and roadmaps.
+      </p>
+      <div class="tech-pills">
+        <span class="tech-pill">Platform Architecture</span>
+        <span class="tech-pill">API Design</span>
+        <span class="tech-pill">Tech Strategy</span>
+        <span class="tech-pill">Roadmapping</span>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-meta">
+        <span class="timeline-period">2023 — 2024</span>
+        <span class="timeline-company">PFA Pension</span>
+      </div>
+      <div class="timeline-role">ServiceNow Developer — Delivery Management</div>
+      <p class="timeline-desc">
+        Optimised ITSM processes and developed automated workflows in ServiceNow, increasing operational transparency and reducing manual coordination across departments. Built KPI dashboards enabling data-driven, real-time performance monitoring used at all levels of PFA's IT organisation — from operational teams to senior leadership.
+      </p>
+      <div class="tech-pills">
+        <span class="tech-pill">ServiceNow</span>
+        <span class="tech-pill">Azure DevOps</span>
+        <span class="tech-pill">JavaScript</span>
+        <span class="tech-pill">ITIL</span>
+        <span class="tech-pill">Agile/Scrum</span>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-meta">
+        <span class="timeline-period">2021 — 2022</span>
+        <span class="timeline-company">Novo Nordisk</span>
+      </div>
+      <div class="timeline-role">Integration Developer — Global IT Integration</div>
+      <p class="timeline-desc">
+        Implemented system integrations via MuleSoft and REST APIs, automating data exchange across global platforms. Designed scalable integration solutions aligned to enterprise architecture and governance standards, supporting global ITSM operations across markets. Contributed to full agile sprint cycles including planning, backlog refinement, and technical documentation.
+      </p>
+      <div class="tech-pills">
+        <span class="tech-pill">MuleSoft</span>
+        <span class="tech-pill">Java</span>
+        <span class="tech-pill">REST APIs</span>
+        <span class="tech-pill">Agile/Scrum</span>
+        <span class="tech-pill">Enterprise Architecture</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header">
+    <span class="section-num">03 /</span>
+    <h2 class="section-title">Projects</h2>
+  </div>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-type">Bachelor Project · 2024</div>
+      <div class="project-name">Performance Optimisation Through Dashboards</div>
+      <p class="project-desc">
+        Delivered for PFA Pension — a full KPI dashboard implementation in ServiceNow enabling data-driven performance management across IT operations at all organisational levels.
+      </p>
+      <ul class="project-highlights">
+        <li>Defined, developed and deployed custom KPI frameworks within ServiceNow ITSM</li>
+        <li>Enabled real-time monitoring for proactive decision-making at operational and executive levels</li>
+        <li>Solution actively used across all levels of PFA's IT department post-delivery</li>
+      </ul>
+      <div class="project-tech">
+        <span>ServiceNow</span>
+        <span>ITSM</span>
+        <span>KPI Design</span>
+        <span>Data Visualisation</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-type">Startup Consulting · 2024</div>
+      <div class="project-name">Natmaskinen — Mobile Platform Strategy</div>
+      <p class="project-desc">
+        Defined a complete technology strategy for a mobile storytelling platform targeting iOS and Android, enabling the founding team to move from concept to a scalable, investor-ready product.
+      </p>
+      <ul class="project-highlights">
+        <li>Architected end-to-end platform covering hosting, subscriptions, and security framework</li>
+        <li>Produced a phased development roadmap ready for developer and investor engagement</li>
+        <li>Designed a scalable cross-platform architecture aligned with growth projections</li>
+      </ul>
+      <div class="project-tech">
+        <span>iOS / Android</span>
+        <span>Platform Architecture</span>
+        <span>Tech Strategy</span>
+        <span>Roadmapping</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-type">Startup Consulting · 2024</div>
+      <div class="project-name">Linnker — Direct-to-Hotel Booking Platform</div>
+      <p class="project-desc">
+        Translated a startup's booking marketplace concept into a concrete, scalable platform architecture — enabling the client to engage developers and investors on a solid technical foundation.
+      </p>
+      <ul class="project-highlights">
+        <li>Defined API integration patterns, system architecture, and hosting environment</li>
+        <li>Produced a phased development roadmap from MVP to scale</li>
+        <li>Bridged business vision and engineering deliverables for a direct-to-hotel marketplace</li>
+      </ul>
+      <div class="project-tech">
+        <span>API Design</span>
+        <span>System Architecture</span>
+        <span>Marketplace Platforms</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-type">Creative Leadership · 2017–2023</div>
+      <div class="project-name">Jugendwerk — Creative Platform & Events</div>
+      <p class="project-desc">
+        Co-led a Copenhagen-based cultural platform focused on collaboration, inclusion, and cultural diversity — curating events combining music, visual art, and gastronomy over six years.
+      </p>
+      <ul class="project-highlights">
+        <li>Planned and executed multi-discipline events as project lead</li>
+        <li>Curated cross-domain collaborations between musicians, visual artists, and chefs</li>
+        <li>Built and sustained a community centred on creative openness and diversity</li>
+      </ul>
+      <div class="project-tech">
+        <span>Project Management</span>
+        <span>Event Curation</span>
+        <span>Community Building</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-header">
+    <span class="section-num">04 /</span>
+    <h2 class="section-title">Education</h2>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-period">2020 — 2024</div>
+      <div class="edu-degree">BEng in IT & Economics</div>
+      <div class="edu-inst">DTU — Technical University of Denmark &amp; CBS</div>
+      <p class="edu-body">
+        A dual-institution engineering degree combining technical computing with business strategy and economics. Covered full-stack development, distributed systems, software architecture, agile delivery, and strategic business analysis.
+      </p>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-period">2024</div>
+      <div class="edu-degree">Bachelor Thesis</div>
+      <div class="edu-inst">Performance Optimisation Through Dashboards · PFA Pension</div>
+      <p class="edu-body">
+        Completed in collaboration with PFA Pension. Designed and implemented KPI dashboards in ServiceNow, transforming complex ITSM data into clear, actionable insights for IT leadership and operational teams.
+      </p>
+    </div>
+
+    <div class="courses-card">
+      <div class="courses-title">Relevant coursework</div>
+      <div class="courses-grid">
+        <div class="course-item">
+          <div class="course-name">Full Stack Development & Distributed Systems</div>
+          <div class="course-desc">REST APIs, microservices, Docker, cloud deployment, front- and back-end services</div>
+        </div>
+        <div class="course-item">
+          <div class="course-name">Agile Object-Oriented Software Development</div>
+          <div class="course-desc">Iterative delivery, CI, code reviews, cross-functional team collaboration</div>
+        </div>
+        <div class="course-item">
+          <div class="course-name">Software Processes & Patterns</div>
+          <div class="course-desc">Scrum, design patterns, risk analysis, software architecture in team delivery</div>
+        </div>
+        <div class="course-item">
+          <div class="course-name">IT Systems Development Methods</div>
+          <div class="course-desc">UML, design patterns, architecture decisions, quality assurance</div>
+        </div>
+        <div class="course-item">
+          <div class="course-name">Strategic Analysis & Development</div>
+          <div class="course-desc">ESG, stakeholder mapping, business environment analysis and sustainable strategy</div>
+        </div>
+        <div class="course-item">
+          <div class="course-name">CDIO Engineering Project</div>
+          <div class="course-desc">Full engineering lifecycle — Conceive, Design, Implement, Operate — real problem, working solution</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header">
+    <span class="section-num">05 /</span>
+    <h2 class="section-title">Get in Touch</h2>
+  </div>
+  <div class="contact-layout">
+    <div>
+      <p class="contact-intro">Open to new opportunities in integration engineering, platform development, and technical consulting.</p>
+      <p class="contact-note">
+        Whether you're looking for a ServiceNow developer, an integration engineer with MuleSoft experience, or a technical consultant who can bridge business and engineering — I'd love to hear from you.
+      </p>
+    </div>
+    <div class="contact-details">
+      <div class="contact-item">
+        <span class="contact-label">Email</span>
+        <span class="contact-value"><a href="mailto:Oliveruldallschultz@gmail.com">Oliveruldallschultz@gmail.com</a></span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Phone</span>
+        <span class="contact-value"><a href="tel:+4524283452">(+45) 24 28 34 52</a></span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Location</span>
+        <span class="contact-value">Copenhagen N, Denmark</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">LinkedIn</span>
+        <span class="contact-value"><a href="https://linkedin.com" target="_blank">linkedin.com/in/oliveruldallschultz</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-name">Oliver Uldall Schultz</span>
+  <span class="footer-note">IT Engineer &amp; Integration Specialist · Copenhagen, DK</span>
+</footer>
+
+</body>
+</html>
